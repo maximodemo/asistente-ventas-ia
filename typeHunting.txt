@@ -1,0 +1,71 @@
+def process_message(self, user_message: str) -> Dict[str, str]:
+
+-desglose de eso:
+def: Es la palabra reservada de Python para "definir" una función o un método. Es el equivalente a decir public void o public String en Java.
+
+process_message: Es simplemente el nombre que elegimos para nuestro método. En este caso, "procesar mensaje".
+
+( y ): Todo lo que está entre paréntesis son los parámetros (lo que el método necesita recibir para poder trabajar).
+
+self: (¡Muy importante!) Es el equivalente a this en Java o C++. Como esta función vive dentro de una Clase (HybridChatbot), necesita una forma de referirse a sí misma. self le permite al método acceder a las variables de la clase (como self.name). Siempre es el primer parámetro en los métodos de una clase en Python, pero cuando llamas al método desde afuera, Python lo pasa automáticamente, no lo escribes tú.
+
+user_message: Es el nombre de la variable que va a guardar el texto que nos mande el usuario (ej: "Hola bot").
+
+: str: Esta es la primera Pista de Tipado. Le estamos diciendo a nuestro editor (VS Code) y a otros programadores: "Ojo, user_message DEBE ser un String (texto)". Si alguien intenta pasarle un número entero (123), VS Code lo subrayará en amarillo para advertirle.
+
+-> Dict[str, str]: Esta es la Pista de Retorno (Return Type Hint). La flechita -> significa "este método va a devolver...". En este caso, devuelve un Dict (Diccionario, que es el equivalente a un HashMap en Java o un objeto JSON). Adentro de los corchetes [str, str] le especificamos que tanto las claves (keys) como los valores (values) de ese diccionario van a ser textos (Strings).
+
+:: En Python, los dos puntos al final de una línea como def, if, o for significan "aquí empieza el bloque de código de adentro". Es el equivalente a abrir una llave { en Java o C++.
+
+--------------------------------
+
+La respuesta corta es: en Python, la diferencia entre una función y un método es el lugar donde "viven" y a quién le pertenecen. Como Python no usa palabras como function o method (usa def para ambos), nos damos cuenta por el contexto.
+
+Aquí tienes la diferencia exacta para que no te queden dudas:
+
+1. La Función (Es libre e independiente)
+Una función se define suelta en el archivo. No le pertenece a nadie, es como una herramienta pública que cualquiera puede usar.
+
+Dónde vive: Fuera de cualquier clase.
+
+Cómo se llama: Directamente por su nombre.
+
+Ejemplo:
+
+Python
+# Esto es una FUNCIÓN. Está suelta en el archivo.
+def sumar(a, b):
+    return a + b
+
+# Se llama así:
+resultado = sumar(5, 3) 
+2. El Método (Le pertenece a una Clase)
+Un método es exactamente igual que una función, pero vive adentro de una Clase. Es una acción que solo los objetos creados a partir de esa clase pueden hacer.
+
+Dónde vive: Indentado (metido hacia la derecha) adentro de un bloque class.
+
+Cómo se llama: Usando un punto después del nombre del objeto (objeto.metodo()).
+
+La gran pista visual: El primer parámetro de un método siempre es self. Si ves self, es un método garantizado.
+
+Ejemplo:
+
+Python
+class Calculadora:
+    # Esto es un MÉTODO. Vive dentro de la clase Calculadora.
+    # Fíjate que tiene 'self'.
+    def sumar_metodo(self, a, b):
+        return a + b
+
+# Para usarlo, PRIMERO tienes que crear el objeto:
+mi_calcu = Calculadora()
+# Y LUEGO lo llamas con un punto:
+resultado = mi_calcu.sumar_metodo(5, 3)
+Aplicado a nuestro proyecto
+En nuestro archivo bot.py, tú escribiste:
+
+Python
+class HybridChatbot:
+    
+    def process_message(self, user_message: str) -> Dict[str, str]:
+        # ... código ...

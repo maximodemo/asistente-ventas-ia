@@ -1,0 +1,31 @@
+{
+    "productos": [
+        {
+            "id": "zapatos_deportivos",
+            "etiquetas": ["zapato", "rojo", "correr", "deporte", "zapatilla", "rápido"],
+            "respuesta": "Sí, tenemos excelentes zapatos rojos especiales para correr. Son el modelo SpeedRun 3000 y cuestan $85."
+        },
+        {
+            "id": "botas_montaña",
+            "etiquetas": ["bota", "montaña", "trekking", "frío", "nieve"],
+            "respuesta": "Para la montaña te recomendamos nuestras botas térmicas Alpine. Son impermeables y soportan hasta -10°C."
+        }
+    ],
+    "soporte": [
+        {
+            "id": "horarios",
+            "etiquetas": ["horario", "abrir", "cerrar", "atención", "hora"],
+            "respuesta": "Nuestro horario de atención es de Lunes a Viernes de 9:00 AM a 6:00 PM."
+        },
+        {
+            "id": "envios",
+            "etiquetas": ["envío", "envios", "mandar", "llegar", "país", "costo", "gratis", "casa", "domicilio"],
+            "respuesta": "Hacemos envíos a todo el país. El envío es gratis en compras mayores a $50. Si es menor, cuesta $5."
+        },
+        {
+            "id": "devoluciones",
+            "etiquetas": ["devolución", "cambio", "reembolso", "garantía", "devolver"],
+            "respuesta": "Ofrecemos una garantía de satisfacción. Tienes 30 días para realizar cualquier cambio o devolución presentando tu ticket."
+        }
+    ]
+}

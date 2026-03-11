@@ -1,0 +1,14 @@
+¡Pasemos a la Fase 2: El Cerebro NLP (Procesamiento de Lenguaje Natural)!
+
+¿Qué vamos a hacer y por qué?
+Hasta ahora, nuestro bot es "tonto". Si le dices "Hola" o "hola   ", él solo quita los espacios y lo pasa a minúsculas. Pero en el mundo real, los usuarios escriben de mil formas: "Correr", "Corriendo", "Corrí". Para una computadora, son tres palabras distintas. Para nosotros, es la misma acción.
+
+Aquí es donde entra SpaCy. SpaCy va a tomar la oración del usuario y va a hacer tres cosas fundamentales (este es el estándar en la industria de la IA):
+
+Tokenización: Separar la oración en palabras individuales (tokens).
+
+Eliminación de Stopwords: Descartar palabras que no aportan significado real (como "el", "la", "de", "y").
+
+Lematización: Convertir las palabras a su raíz o forma base (ej: "corriendo" -> "correr", "gatos" -> "gato").
+
+Al hacer esto, extraemos la intención real (las palabras clave) del usuario.

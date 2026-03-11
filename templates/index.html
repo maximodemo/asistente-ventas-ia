@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente de Ventas Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos Globales - Tema Oscuro Premium */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: radial-gradient(circle at top left, #162235 0%, #090a0f 100%);
+            color: #EAEAEA;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh;
+        }
+
+        /* Contenedor Principal */
+        #chat-container { 
+            background-color: #151921; 
+            width: 420px; 
+            height: 650px; 
+            border-radius: 25px; /* Un poco más redondo para combinar */
+            box-shadow: 0 15px 50px rgba(0,0,0,0.6), 0 0 30px rgba(48, 170, 221, 0.05); 
+            display: flex; 
+            flex-direction: column; 
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+        }
+
+        /* Encabezado */
+        #chat-header { 
+            background: linear-gradient(90deg, #1A36A0 0%, #30AADD 100%); 
+            color: white; 
+            padding: 22px; 
+            text-align: center; 
+            font-weight: 700; 
+            font-size: 1.3em;
+            letter-spacing: -0.5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        /* Fondo donde van los mensajes */
+        #chat-box { 
+            flex: 1; 
+            padding: 25px; 
+            overflow-y: auto; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 18px; 
+            background-color: #0D1117; 
+        }
+
+        /* Animación */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilo Base de Mensajes - ESTILO PÍLDORA (iMessage) */
+        .message { 
+            max-width: 85%; 
+            padding: 12px 20px; /* Ajustado para la forma de píldora */
+            border-radius: 22px; /* Redondeo extremo */
+            font-size: 0.95em; 
+            line-height: 1.5;
+            font-weight: 400;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        /* Mensajes del Bot */
+        .bot-msg { 
+            background-color: #1F242C; 
+            color: #EAEAEA;
+            align-self: flex-start; 
+            border: 1px solid rgba(255,255,255,0.05); 
+            border-bottom-left-radius: 4px; /* Crea la "colita" del chat a la izquierda */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
+        }
+
+        /* Mensajes del Usuario con Degradado */
+        .user-msg { 
+            background: linear-gradient(135deg, #1A36A0 0%, #30AADD 100%); 
+            color: white; 
+            align-self: flex-end; 
+            border: 1px solid rgba(255,255,255,0.1);
+            border-bottom-right-radius: 4px; /* Crea la "colita" del chat a la derecha */
+            box-shadow: 0 6px 18px rgba(26, 54, 160, 0.35); 
+        }
+
+        /* Área de Entrada de Texto */
+        #input-area { 
+            padding: 18px; 
+            background-color: #151921; 
+            display: flex; 
+            gap: 12px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            z-index: 10;
+        }
+
+        #user-input { 
+            flex: 1; 
+            padding: 12px 20px; 
+            background-color: #0D1117; 
+            color: white;
+            border: 1px solid #2D333B; 
+            border-radius: 25px; /* Estilo píldora */
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+        }
+        #user-input::placeholder { color: #7A8490; }
+        #user-input:focus { 
+            border-color: #30AADD; 
+            box-shadow: 0 0 12px rgba(48, 170, 221, 0.2);
+            background-color: #11151C;
+        }
+
+        /* Botón de Enviar con Degradado */
+        #send-btn { 
+            background: linear-gradient(135deg, #1A36A0 0%, #30AADD 100%);
+            color: white; 
+            border: none; 
+            padding: 12px 25px; 
+            border-radius: 25px; /* Estilo píldora */
+            cursor: pointer; 
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(26, 54, 160, 0.3);
+        }
+        #send-btn:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(26, 54, 160, 0.5);
+            filter: brightness(1.1);
+        }
+        #send-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Scrollbar Personalizado */
+        #chat-box::-webkit-scrollbar { width: 6px; }
+        #chat-box::-webkit-scrollbar-track { background: transparent; }
+        #chat-box::-webkit-scrollbar-thumb { background: #2D333B; border-radius: 3px; }
+    </style>
+</head>
+<body>
+
+    <div id="chat-container">
+        <div id="chat-header">Asistente de Ventas 🤖</div>
+        <div id="chat-box">
+            <div class="message bot-msg">¡Hola! Soy el asistente virtual de la tienda. ¿En qué te puedo ayudar hoy?</div>
+        </div>
+        <div id="input-area">
+            <input type="text" id="user-input" placeholder="Escribe tu mensaje aquí..." onkeypress="handleKeyPress(event)">
+            <button id="send-btn" onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById("chat-box");
+        const userInput = document.getElementById("user-input");
+
+        function appendMessage(sender, text, className) {
+            const msgDiv = document.createElement("div");
+            msgDiv.classList.add("message", className);
+            msgDiv.innerText = text;
+            chatBox.appendChild(msgDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const text = userInput.value.trim();
+            if (text === "") return;
+
+            appendMessage("Tú", text, "user-msg");
+            userInput.value = ""; 
+
+            const typingDiv = document.createElement("div");
+            typingDiv.classList.add("message", "bot-msg");
+            typingDiv.innerText = "Escribiendo...";
+            typingDiv.id = "typing-indicator";
+            chatBox.appendChild(typingDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            try {
+                const response = await fetch("/api/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ mensaje: text })
+                });
+
+                const data = await response.json();
+                
+                document.getElementById("typing-indicator").remove();
+                appendMessage("Bot", data.response, "bot-msg");
+
+            } catch (error) {
+                document.getElementById("typing-indicator").remove();
+                appendMessage("Bot", "Lo siento, hubo un error de conexión con el servidor.", "bot-msg");
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }
+    </script>
+</body>
+</html>
