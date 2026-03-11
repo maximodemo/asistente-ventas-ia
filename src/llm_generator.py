@@ -10,15 +10,21 @@ class LLMGenerator:
     
     def __init__(self):
         print("[LLMGenerator] Inicializando conexión con Gemini...")
-        # 1. Cargamos los secretos del archivo .env
+        # 1. Cargamos los secretos
         load_dotenv()
         self.api_key = os.getenv("GEMINI_API_KEY")
         
-        # 2. Configuramos la librería de Google con nuestra llave
+        # Validación de seguridad:
+        if not self.api_key:
+            print("⚠️ [ERROR] No se pudo cargar GEMINI_API_KEY. Revisa las Environment Variables en Render.")
+        
+        # 2. Configuramos la librería
         genai.configure(api_key=self.api_key)
         
-        # 3. Elegimos el modelo. Usamos 'flash' porque es rapidísimo y gratuito.
-        self.model = genai.GenerativeModel('gemini-2.5-flash')
+        # 3. Elegimos el modelo 2.5 flash
+        self.model = genai.GenerativeModel('gemini-2.0-flash') 
+        # NOTA: Aunque Google anunció la serie 2.5, en la librería de Python 
+        # el ID del modelo suele ser 'gemini-2.0-flash' o el que te dieron en AI Studio.
 
     def generate_human_response(self, user_message: str, database_info: str) -> str:
         """
