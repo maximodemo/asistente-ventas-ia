@@ -1,6 +1,7 @@
 import json
 import os
 from typing import List, Dict, Tuple
+import unicodedata # Añade esto al inicio del archivo si no está
 
 class KnowledgeRetriever:
     """
@@ -25,7 +26,7 @@ class KnowledgeRetriever:
             return json.load(file)
 
     def search_best_match(self, user_keywords: List[str]) -> Tuple[str, float]:
-        import unicodedata # Añade esto al inicio del archivo si no está
+       
         
         def limpiar_tildes(texto):
             return ''.join((c for c in unicodedata.normalize('NFD', texto) if unicodedata.category(c) != 'Mn'))
