@@ -14,7 +14,7 @@ El objetivo principal del proyecto es implementar una arquitectura **RAG (Retrie
 ## 🛠️ Tecnologías Utilizadas
 
 * **Backend:** Python 3, Flask
-* **Inteligencia Artificial:** API de Google Gemini
+* **Inteligencia Artificial:** Google GenAI SDK (Modelo: Gemini 2.5 Flash)
 * **NLP (Lenguaje Natural):** SpaCy (`es_core_news_sm`), Unicodedata
 * **Frontend:** HTML5, CSS3, JavaScript Vanilla
 * **Almacenamiento:** Archivos JSON (Base de conocimientos local)
