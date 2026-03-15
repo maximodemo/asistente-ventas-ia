@@ -1,5 +1,7 @@
 # 🤖 Asistente de Ventas IA (Arquitectura RAG)
 
+![Demo del Chatbot](demo.gif)
+
 Este repositorio contiene un chatbot de atención al cliente desarrollado con Python, procesamiento de lenguaje natural (NLP) y la API de Google Gemini. 
 
 El objetivo principal del proyecto es implementar una arquitectura **RAG (Retrieval-Augmented Generation)** funcional. El sistema está diseñado para que la IA responda basándose exclusivamente en una base de conocimientos local, garantizando que la información entregada al cliente sea siempre exacta, controlada y alineada con las reglas del negocio.
